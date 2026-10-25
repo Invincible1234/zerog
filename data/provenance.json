@@ -1,0 +1,83 @@
+{
+  "source": "https://github.com/Invincible1234/Coreweave_LangChain",
+  "commit": "fae8e9f09a9d50f9892afed1b8537028aa4e1a54",
+  "rowDefinition": "CSV records excluding header, summed across the four bundled tables. Not unique genes.",
+  "files": [
+    {
+      "path": "osdr_catalog.csv",
+      "sha256": "5cc7d048bd6c6193a228ddef6bddc0b4d74151770c3c5eca337052d3b4b1bafd"
+    },
+    {
+      "path": "studies.json",
+      "sha256": "ab4ee306ec3d917e16411e4b87774113dab4d39d04f51641a80899714db90a55"
+    },
+    {
+      "path": "raw/OSD-104_rna_seq_differential_expression.csv",
+      "sha256": "52e57219e8bcdc795624b18b6f8268649403ad1da3afd176b2344d3f3bd63a36",
+      "rows": 22438
+    },
+    {
+      "path": "raw/OSD-255_differential_expression.csv",
+      "sha256": "4c0cbfdf4d964778e9ce88e801e146964aeb1569772071a5f2eaaa7ccdfde9d9",
+      "rows": 23472
+    },
+    {
+      "path": "raw/OSD-421_differential_expression.csv",
+      "sha256": "fb65e8169ec1e5334b988d9db622bc83ea29b46aa6404cb393e060fe10dda1b3",
+      "rows": 22978
+    },
+    {
+      "path": "raw/OSD-467_differential_expression.csv",
+      "sha256": "7991521e48739c4dc71ddd5511e06694de04d78f7c159a43c0509d97acf125e8",
+      "rows": 24071
+    },
+    {
+      "path": "results/graph.json",
+      "sha256": "0e873b784936687d0ae830f754a5ee990836d40fb99da1c1359506b821ef3a11"
+    },
+    {
+      "path": "results/holdout_rules_v0.json",
+      "sha256": "41e006490d8e6f248c10ba61d8b7996efeed525c476058cd53fcd98c1eed7775"
+    },
+    {
+      "path": "results/holdout_rules_v2.json",
+      "sha256": "1a45cacd6f43a1b0e85357bc9e1df0ab8f90050ebb91c7a83eeba4c14bc4356e"
+    },
+    {
+      "path": "results/holdout_rules_v4.json",
+      "sha256": "4577f6f57886513473743855902270a7afc8351255d6b5bb2e8ff5ad2d90b7d7"
+    },
+    {
+      "path": "results/metrics.csv",
+      "sha256": "7553a5f340b4313692182873a9b3de7a4d671ee2ca403debf70b64de900a576f"
+    },
+    {
+      "path": "results/product_OSD-421.json",
+      "sha256": "38c7f2dcd9f22e8d34de3882192d956ab3fea633aedadd87cdf37d1afa3db3ae"
+    },
+    {
+      "path": "results/replicate_OSD-421.json",
+      "sha256": "693e4f9beae3c48d3dd9fd68181a56a3d8e5690b19958c2f9acda8dbb4636f9b"
+    },
+    {
+      "path": "rules/rules_v0.md",
+      "sha256": "b03267f648201517390f8df8425a09ee82d3db0e6974ec7988494282b3590e0d"
+    },
+    {
+      "path": "rules/rules_v2.md",
+      "sha256": "3f8054257bf2bb1629ad79a0fe27680db0aa32c87ec7f78ffd68200d24cb00ae"
+    },
+    {
+      "path": "rules/rules_v4.md",
+      "sha256": "16739d9eabba1f4bd73536096c064e2b917c7dc31133c620b4b1e3e950a45112"
+    },
+    {
+      "path": "golden/nasa_OSD-255.json",
+      "sha256": "129dc922c9aaad58e751dd55380b3d486bf14d5ad7cc3c0d13b7a4059d4a9342"
+    },
+    {
+      "path": "golden/nasa_OSD-467.json",
+      "sha256": "6e328a4e424533e87bf88d9e16b701da1c12e30322f02ec6f024663566b1cbaf"
+    }
+  ]
+}

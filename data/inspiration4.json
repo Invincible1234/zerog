@@ -1,0 +1,19 @@
+{
+  "mission": "Inspiration4",
+  "status": "listed_only",
+  "source": "https://www.nature.com/articles/s41526-024-00393-5",
+  "accessGuidance": "https://www.nasa.gov/reference/osdr-tutorials-requesting-controlled-access-datasets/",
+  "note": "Metadata directory only. These entries are not differential-expression tables, have no saved critic run, and cannot enter playback. Check file-level access with OSDR.",
+  "studies": [
+    {"osd_id":"OSD-569","title":"Whole blood","assay":"RNA sequencing, epitranscriptomics, whole-genome sequencing, blood counts"},
+    {"osd_id":"OSD-570","title":"Peripheral blood mononuclear cells","assay":"Single-cell and single-nucleus RNA / ATAC sequencing"},
+    {"osd_id":"OSD-571","title":"Blood plasma","assay":"Proteomics, metabolomics, circulating DNA and RNA"},
+    {"osd_id":"OSD-572","title":"Skin, oral and nasal swabs","assay":"Metagenomics / metatranscriptomics"},
+    {"osd_id":"OSD-573","title":"Dragon capsule swabs","assay":"Metagenomics / metatranscriptomics"},
+    {"osd_id":"OSD-574","title":"Skin biopsies","assay":"Spatial transcriptomics / metagenomics"},
+    {"osd_id":"OSD-575","title":"Blood serum","assay":"Metabolic, immune and cardiac cytokine panels"},
+    {"osd_id":"OSD-630","title":"Stool","assay":"Metagenomics"},
+    {"osd_id":"OSD-656","title":"Urine","assay":"Immune panel"},
+    {"osd_id":"OSD-687","title":"T cells","assay":"CUT&RUN / ChIP sequencing"}
+  ]
+}
