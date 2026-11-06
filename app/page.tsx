@@ -1,5 +1,14 @@
 import Link from "next/link";
-import { ArrowRight, Database, FileCheck2, GitBranch } from "lucide-react";
+import {
+  ArrowRight,
+  ArrowUpRight,
+  Database,
+  FileCheck2,
+  GitBranch,
+  Play,
+  Fingerprint,
+  Orbit as OrbitIcon,
+} from "lucide-react";
 import { Counters } from "@/components/counters";
 import { Orbit } from "@/components/orbit";
 import { product, totals } from "@/lib/data";
@@ -9,40 +18,48 @@ export default function Home() {
   return (
     <>
       <section className="hero">
-        <div>
+        <div className="hero-copy">
           <p className="eyebrow">
-            <span className="status-dot" /> OPEN SCIENCE / TRACEABLE EVIDENCE
+            <span className="hero-pill">
+              <span className="status-dot" /> PUBLIC SCIENCE, NEW PERSPECTIVES
+            </span>
           </p>
           <h1>
-            Research leads.
+            Space biology.
             <br />
-            With the evidence
-            <br />
-            <em>still attached.</em>
+            <em>In a new light.</em>
           </h1>
           <p className="hero-description">
-            Explore spaceflight biology through a saved Helix critic run. Follow
-            the table, inspect the verdict, and see what holds up elsewhere.
+            Follow a research lead all the way back to the evidence. Explore
+            public NASA OSDR data through a saved Helix critic run.
           </p>
           <div className="actions">
             <Link className="button primary" href="/corpus">
-              Explore the corpus <ArrowRight size={16} />
+              Explore the corpus <ArrowUpRight size={17} />
             </Link>
             <Link className="button" href="/run">
-              Play saved run <span>↗</span>
+              <Play size={14} fill="currentColor" /> Play saved run
             </Link>
           </div>
-          <p className="fineprint">
-            Public NASA OSDR data. Saved results. No model calls.
-          </p>
+          <div className="hero-proof">
+            <Fingerprint size={16} />
+            <span>Real tables. Saved judgments. Every source attached.</span>
+          </div>
         </div>
         <Orbit />
+        <div className="hero-coordinate" aria-hidden="true">
+          <span>EXPLORATION BEGINS WITH A QUESTION</span>
+          <span>SCROLL TO DISCOVER ↓</span>
+        </div>
       </section>
       <Counters />
-      <section className="home-section">
+      <section className="home-section reveal-section">
         <div className="section-label">
-          <p className="eyebrow">THE EVIDENCE CHAIN</p>
-          <span>Inspect the seams, not just the conclusion.</span>
+          <div>
+            <p className="eyebrow">THE EVIDENCE CHAIN</p>
+            <h2 className="section-title">From signal to scrutiny.</h2>
+          </div>
+          <span>Three perspectives. One traceable lead.</span>
         </div>
         <div className="feature-grid">
           {[
@@ -68,8 +85,16 @@ export default function Home() {
               label: "Open the loop",
             },
           ].map((f) => (
-            <Link className="feature-card" key={f.title} href={f.href}>
-              <f.icon size={22} />
+            <Link
+              className="feature-card"
+              key={f.title}
+              href={f.href}
+              data-spotlight
+            >
+              <div className="feature-symbol">
+                <f.icon size={23} />
+                <ArrowUpRight size={18} />
+              </div>
               <h2>{f.title}</h2>
               <p>{f.text}</p>
               <span>
@@ -80,9 +105,14 @@ export default function Home() {
           ))}
         </div>
       </section>
-      <section className="home-section">
+      <section className="home-section reveal-section">
         <div className="section-label">
-          <p className="eyebrow">FROM THE SAVED RUN / OSD-421</p>
+          <div>
+            <p className="eyebrow">INSIDE THE SAVED RUN / OSD-421</p>
+            <h2 className="section-title">
+              The interesting part is the evidence.
+            </h2>
+          </div>
           <Link href="/corpus/OSD-421">
             Inspect all {run.leads.length} leads →
           </Link>
@@ -104,13 +134,21 @@ export default function Home() {
           </Link>
         ))}
       </section>
-      <section className="mission-banner">
+      <section className="mission-banner reveal-section" data-spotlight>
+        <div className="mission-orbit" aria-hidden="true">
+          <OrbitIcon size={96} strokeWidth={0.7} />
+        </div>
         <div>
           <p className="eyebrow">HUMAN SPACEFLIGHT / THE NEXT ADAPTER</p>
-          <h2>Inspiration4 is listed. Not analysed here.</h2>
+          <h2>
+            A human chapter.
+            <br />
+            <span className="accent">Inspiration4.</span>
+          </h2>
           <p>
-            Discover the public study directory. Human-data access and assay
-            mapping need review before any critic run.
+            Explore the mission’s public study directory. Listed only in this
+            demo; human-data access and assay mapping need review before
+            analysis.
           </p>
         </div>
         <Link className="button" href="/corpus#inspiration4">

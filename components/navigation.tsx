@@ -2,6 +2,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 const links = [
+  ["/", "Overview"],
   ["/corpus", "Corpus"],
   ["/run", "Saved run"],
   ["/loop", "Loop"],
@@ -15,8 +16,16 @@ export function Navigation() {
         <Link
           key={href}
           href={href}
-          className={pathname.startsWith(href) ? "active" : ""}
-          aria-current={pathname.startsWith(href) ? "page" : undefined}
+          className={
+            (href === "/" ? pathname === "/" : pathname.startsWith(href))
+              ? "active"
+              : ""
+          }
+          aria-current={
+            (href === "/" ? pathname === "/" : pathname.startsWith(href))
+              ? "page"
+              : undefined
+          }
         >
           {label}
         </Link>

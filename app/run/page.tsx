@@ -3,7 +3,12 @@ import { product, replication } from "@/lib/data";
 import { PageHeading, SourceLink } from "@/components/ui";
 import { Playback } from "@/components/playback";
 export const metadata = { title: "Saved run" };
-export default function Run() {
+export default async function Run({
+  searchParams,
+}: {
+  searchParams: Promise<{ lead?: string }>;
+}) {
+  const { lead } = await searchParams;
   return (
     <>
       <PageHeading
@@ -16,7 +21,12 @@ export default function Run() {
           rerun the critic.
         </p>
       </PageHeading>
-      <Playback leads={product().leads} replications={replication().leads} />
+      <Playback
+        key={lead || "start"}
+        leads={product().leads}
+        replications={replication().leads}
+        initialLeadId={lead}
+      />
       <div className="section-label">
         <Link href="/corpus/OSD-421">
           Inspect all leads and their evidence →

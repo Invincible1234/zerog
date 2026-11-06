@@ -9,6 +9,8 @@ import {
 } from "@/lib/data";
 import { PageHeading, Badge, SourceLink, UnknownStudy } from "@/components/ui";
 import { LeadExplorer } from "@/components/lead-explorer";
+import { TableExplorer } from "@/components/table-explorer";
+import { tablePage } from "@/lib/tables";
 export default async function StudyPage({
   params,
 }: {
@@ -42,6 +44,7 @@ export default async function StudyPage({
   const local = manifest().files.find(
     (f) => f.path.startsWith("raw/") && f.path.includes(`${osd}_`),
   );
+  const sourceTable = local ? tablePage(osd) : null;
   return (
     <>
       <PageHeading
@@ -71,6 +74,7 @@ export default async function StudyPage({
         </div>
       </div>
       <SourceLink href={osdr(osd)}>NASA OSDR record</SourceLink>
+      {sourceTable && <TableExplorer key={osd} initial={sourceTable} />}
       {osd === "OSD-421" ? (
         <>
           <div className="notice">

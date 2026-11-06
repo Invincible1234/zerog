@@ -1,10 +1,14 @@
-import { read } from "@/lib/data";
+import { manifest, read } from "@/lib/data";
 const files: Record<string, string> = {
   product: "results/product_OSD-421.json",
   replication: "results/replicate_OSD-421.json",
   graph: "results/graph.json",
   provenance: "provenance.json",
-  "table-421": "raw/OSD-421_differential_expression.csv",
+  ...Object.fromEntries(
+    manifest()
+      .files.filter((f) => f.path.startsWith("raw/"))
+      .map((f) => [`table-${f.path.match(/OSD-(\d+)_/)![1]}`, f.path]),
+  ),
   ...Object.fromEntries(
     [0, 2, 4].flatMap((v) => [
       [`holdout-v${v}`, `results/holdout_rules_v${v}.json`],

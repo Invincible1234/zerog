@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Search } from "lucide-react";
 import type { Lead, Fact, Replication } from "@/lib/types";
 import { Badge, SourceLink } from "./ui";
@@ -47,6 +47,27 @@ export function LeadExplorer({
   leads: Lead[];
   replications: Replication[];
 }) {
+  useEffect(() => {
+    const openLinkedLead = () => {
+      let id: string;
+      try {
+        id = decodeURIComponent(window.location.hash.slice(1));
+      } catch {
+        return;
+      }
+      const element = document.getElementById(id);
+      if (
+        element instanceof HTMLDetailsElement &&
+        element.classList.contains("lead-card")
+      ) {
+        element.open = true;
+        element.scrollIntoView({ block: "start" });
+      }
+    };
+    openLinkedLead();
+    window.addEventListener("hashchange", openLinkedLead);
+    return () => window.removeEventListener("hashchange", openLinkedLead);
+  }, []);
   const [query, setQuery] = useState("");
   const [label, setLabel] = useState("all");
   const labels = ["all", ...new Set(leads.map((l) => l.label))];

@@ -17,6 +17,7 @@ Open http://127.0.0.1:43123. Both `npm run dev` and `npm start` bind `0.0.0.0:43
 
 ```sh
 npm run verify:data
+npm test
 npm run typecheck
 npm run build
 npm start
@@ -28,13 +29,20 @@ Docker: `docker build -t zerog .` then `docker run --rm -p 43123:43123 zerog`.
 
 - `/` — server-rendered totals derived from data: 243 catalog studies, 92,959 local gene rows, 38 OSD-421 survivors.
 - `/corpus` — searchable saved catalog plus the separate Inspiration4 directory.
-- `/corpus/OSD-421` — original leads, table facts, critic labels and separate replication records.
+- `/corpus/OSD-421` — searchable original expression table, saved leads, critic labels and separate replication records. OSD-104, OSD-255 and OSD-467 also have browsable source tables.
 - `/corpus/OSD-NOPE` — visible in-layout unknown-study page, not Next's `notFound()`.
-- `/run` — play, pause, step, scrub and restart saved lead playback.
+- `/run` — play, pause, change speed, jump between leads or evidence stages, and share a lead with `/run?lead=OSD-421_lead_012`.
 - `/loop` — original v0/v2/v4 rules and train/holdout metrics. v2 ships on saved holdout; jury labels are explicitly not human gold.
-- `/graph` — search all 294 finding nodes (try `Drd4`) and inspect connected evidence.
+- `/graph` — search all 294 finding nodes (try `Drd4`), explore an interactive neighborhood of actual saved edges, and inspect passages, studies and related findings.
 - `/method` — sources, scope, limitations and the sample-count discrepancy.
 - `/evidence/[file]` — allowlisted original evidence downloads; no arbitrary filesystem access.
+- `/api/tables/[osd]` — read-only search of the four bundled tables. Accepts `q`, `contrast`, `significant=true`, `sort=adjustedP|magnitude|symbol`, and `page`. Unknown and human-mission studies return 404; unsupported contrasts return 400.
+
+Source table browsing runs deterministic CSV parsing on the local Node server. It does not run Helix, a critic, an LLM or a new differential-expression analysis. Counts are computed directly from finite table values. The optional significance filter uses adjusted p < 0.05; missing values stay unavailable. Original table downloads keep all columns and precision. Page exports contain only the displayed rows, with source file and contrast included.
+
+The catalog supports grid/list views, organism and availability filters, sorting and incremental results. Use the header search or Ctrl+K to jump to a page or study. The globe uses bundled public-domain Natural Earth geography; its orbit is an illustration, not mission telemetry. Fonts and geography are served locally with source/license notices.
+
+On Windows, if an existing generated build folder is locked, use a fresh output directory (PowerShell): `$env:ZEROG_DIST_DIR='.next-release'; npm run build`. Keep the same variable set when running `npm start`. `ZEROG_DIST_DIR` is optional and defaults to `.next`.
 
 ## Data provenance and scientific limits
 
@@ -59,5 +67,6 @@ The Python graph export contains bare `NaN` numeric tokens. The read adapter map
 3. Click Light: `<html data-theme="light">`, `localStorage['zerog-theme'] === 'light'`, computed body background `rgb(244, 241, 234)`, button reads Dark. Reload, navigate, and toggle back.
 4. Click Corpus, Saved run, Loop, Graph. Search `thymus` in Corpus and `Drd4` in Graph.
 5. Check mobile layout, playback controls and evidence downloads.
+6. In OSD-421, search the source table for `H2bc12`. Switch the contrast and confirm the effect reverses sign. Export the current page and verify its contrast and source file. Inspiration4 must never return an expression table.
 
 This repository was rebuilt from scratch; the unavailable Cursor checkout and its uncommitted files were not imported.

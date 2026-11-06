@@ -2,9 +2,11 @@
 import { useMemo, useState } from "react";
 import Link from "next/link";
 import { Search } from "lucide-react";
+// Interactive evidence neighborhood.
 import type { GraphNode, GraphEdge } from "@/lib/types";
 import { Badge, SourceLink } from "./ui";
 import { Facts } from "./lead-explorer";
+import { GraphNeighborhood } from "./graph-neighborhood";
 export function GraphSearch({
   nodes,
   edges,
@@ -79,6 +81,16 @@ export function GraphSearch({
         </div>
         {active && (
           <article className="graph-detail">
+            <GraphNeighborhood
+              key={active.id}
+              active={active}
+              nodes={nodes}
+              edges={edges}
+              onFinding={(id) => {
+                setQuery("");
+                setSelected(id);
+              }}
+            />
             <p className="eyebrow">SELECTED FINDING / ORIGINAL CLAIM</p>
             <h2>{active.claim ?? active.label}</h2>
             <p className="mono">{active.id}</p>
@@ -135,11 +147,16 @@ export function GraphSearch({
                   {other?.type === "passage" && (
                     <>
                       {other.pmid && /^\d+$/.test(other.pmid) && (
-                        <SourceLink href={`https://pubmed.ncbi.nlm.nih.gov/${other.pmid}/`}>
+                        <SourceLink
+                          href={`https://pubmed.ncbi.nlm.nih.gov/${other.pmid}/`}
+                        >
                           Read source paper
                         </SourceLink>
                       )}
-                      <p>Original graph JSON retains relation probabilities and retrieval provenance.</p>
+                      <p>
+                        Original graph JSON retains relation probabilities and
+                        retrieval provenance.
+                      </p>
                     </>
                   )}
                 </section>

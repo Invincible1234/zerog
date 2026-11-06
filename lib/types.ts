@@ -67,3 +67,31 @@ export type GraphEdge = {
   relation: string;
 };
 export type Graph = { built: string; nodes: GraphNode[]; edges: GraphEdge[] };
+export type ExpressionContrast = {
+  key: string;
+  label: string;
+  positive: string;
+  effectColumn: string;
+  adjustedColumn: string;
+};
+export type ExpressionRow = {
+  id: string;
+  symbol: string;
+  name: string;
+  effect: number | null;
+  adjustedP: number | null;
+};
+export type TablePage = {
+  osd: string;
+  sourceFile: string;
+  contrast: ExpressionContrast;
+  contrasts: ExpressionContrast[];
+  total: number;
+  withStatistics: number;
+  significant: number;
+  matched: number;
+  page: number;
+  pages: number;
+  pageSize: number;
+  rows: ExpressionRow[];
+};

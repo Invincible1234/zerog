@@ -2,12 +2,16 @@
   "name": "zerog",
   "version": "1.0.0",
   "private": true,
+  "engines": {
+    "node": ">=22.13.0"
+  },
   "description": "Zex / ZEROg — a saved Helix evidence explorer",
   "scripts": {
     "dev": "next dev --hostname 0.0.0.0 --port 43123",
     "build": "next build",
     "start": "next start --hostname 0.0.0.0 --port 43123",
     "typecheck": "tsc --noEmit",
+    "test": "node --test scripts/test-expression.mjs",
     "verify:data": "node scripts/verify-data.mjs"
   },
   "dependencies": {

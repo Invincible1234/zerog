@@ -3,7 +3,11 @@ import Link from "next/link";
 import { ThemeFrame } from "@/components/theme-frame";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { Navigation } from "@/components/navigation";
+import { CommandMenu } from "@/components/command-menu";
+import { Experience } from "@/components/experience";
+import { catalog } from "@/lib/data";
 import "./globals.css";
+import "./experience.css";
 export const metadata: Metadata = {
   title: { default: "Zex / ZEROg — Evidence in orbit", template: "%s · ZEROg" },
   icons: { icon: "/icon.svg" },
@@ -23,25 +27,39 @@ export default function RootLayout({
       </head>
       <body>
         <ThemeFrame>
+          <Experience />
+          <div className="ambient-light" aria-hidden="true" />
           <a className="skip-link" href="#main">
             Skip to content
           </a>
           <header className="site-header">
             <Link className="wordmark" href="/" aria-label="ZEROg home">
               ZERO<span>g</span>
-              <small>ZEX</small>
+              <small>BY ZEX</small>
             </Link>
             <Navigation />
             <div className="header-tools">
-              <span className="status">
-                <i />
-                SAVED DEMO
-              </span>
+              <CommandMenu
+                studies={catalog().map((s) => ({
+                  id: s.osd_id,
+                  title: s.title,
+                  tissue: s.material,
+                }))}
+              />
               <ThemeToggle />
             </div>
           </header>
           <main id="main">{children}</main>
           <footer className="site-footer">
+            <div className="footer-brand">
+              <Link href="/" className="wordmark">
+                ZERO<span>g</span>
+              </Link>
+              <span>Open data. Open questions. Traceable evidence.</span>
+              <span className="status">
+                <i /> SAVED RESEARCH DEMO
+              </span>
+            </div>
             <p>
               <span className="accent">↳</span> Leads are not experimental
               validation. Table numbers, the critic label, and the replication
