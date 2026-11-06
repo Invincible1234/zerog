@@ -44,6 +44,9 @@ export default function RootLayout({
               <small>BY ZEX</small>
             </Link>
             <Navigation />
+            <span className="header-session">
+              <i /> SAVED SESSION
+            </span>
             <div className="header-tools">
               <CommandMenu
                 studies={catalog().map((s) => ({

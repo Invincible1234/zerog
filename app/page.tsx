@@ -12,10 +12,11 @@ import {
 } from "lucide-react";
 import { Counters } from "@/components/counters";
 import { Orbit } from "@/components/orbit";
-import { product, totals } from "@/lib/data";
-import { Badge } from "@/components/ui";
+import { product, replication, totals } from "@/lib/data";
+import { EvidenceConsole } from "@/components/evidence-console";
 export default function Home() {
   const run = product();
+  const preview = [...run.survivors.slice(0, 2), ...run.killed.slice(0, 1)];
   return (
     <>
       <section className="hero">
@@ -23,19 +24,19 @@ export default function Home() {
         <div className="hero-copy">
           <p className="eyebrow">
             <span className="hero-pill">
-              <Sparkles size={12} /> PUBLIC SCIENCE, NEW PERSPECTIVES
+              <Sparkles size={12} /> THE OPEN SCIENCE OBSERVATORY
             </span>
           </p>
           <h1>
-            <span className="hero-first-line">Space biology.</span>
+            <span className="hero-first-line">A new orbit</span>
             <br />
             <em>
-              In a <span className="luminous-word">new light.</span>
+              for <span className="luminous-word">discovery.</span>
             </em>
           </h1>
           <p className="hero-description">
-            Follow a research lead all the way back to the evidence. Explore
-            public NASA OSDR data through a saved Helix critic run.
+            The next question is out there. Follow the evidence in public NASA
+            OSDR data, from the first signal to the scrutiny it deserves.
           </p>
           <div className="actions">
             <Link className="button primary" href="/corpus">
@@ -49,6 +50,9 @@ export default function Home() {
             <Fingerprint size={16} />
             <span>Real tables. Saved judgments. Every source attached.</span>
           </div>
+          <a className="hero-text-link" href="#evidence-console">
+            Inspect a saved lead <ArrowRight size={13} />
+          </a>
         </div>
         <div className="hero-observatory">
           <span className="observatory-label" aria-hidden="true">
@@ -61,7 +65,34 @@ export default function Home() {
           <span>SCROLL TO DISCOVER ↓</span>
         </div>
       </section>
+      <div className="observatory-strip">
+        <span>
+          <i /> PUBLIC ARCHIVES. OPEN QUESTIONS.
+        </span>
+        <span>
+          NASA OSDR <span aria-hidden="true">/</span> HELIX{" "}
+          <span aria-hidden="true">/</span> SAVED EVIDENCE
+        </span>
+        <Link href="/method">
+          Inside the method <ArrowUpRight size={12} />
+        </Link>
+      </div>
       <Counters />
+      <section className="home-section reveal-section" id="evidence-console">
+        <div className="section-label">
+          <div>
+            <p className="eyebrow">THE DISCOVERY DESK / OSD-421</p>
+            <h2 className="section-title">A signal is just the beginning.</h2>
+          </div>
+          <span>Select a lead. Pull its evidence apart.</span>
+        </div>
+        <EvidenceConsole
+          leads={preview}
+          replications={replication().leads.filter((r) =>
+            preview.some((lead) => lead.id === r.id),
+          )}
+        />
+      </section>
       <section className="home-section reveal-section">
         <div className="section-label">
           <div>
@@ -113,35 +144,6 @@ export default function Home() {
             </Link>
           ))}
         </div>
-      </section>
-      <section className="home-section reveal-section">
-        <div className="section-label">
-          <div>
-            <p className="eyebrow">INSIDE THE SAVED RUN / OSD-421</p>
-            <h2 className="section-title">
-              The interesting part is the evidence.
-            </h2>
-          </div>
-          <Link href="/corpus/OSD-421">
-            Inspect all {run.leads.length} leads →
-          </Link>
-        </div>
-        {run.survivors.slice(0, 3).map((l) => (
-          <Link
-            href={`/corpus/OSD-421#${l.id}`}
-            className="lead-preview"
-            key={l.id}
-          >
-            <Badge tone="good">{l.label}</Badge>
-            <div>
-              <h3>{l.claim}</h3>
-              <p>
-                {l.rows.join(" · ")} / Mouse thymus / Saved model interpretation
-              </p>
-            </div>
-            <ArrowRight size={18} />
-          </Link>
-        ))}
       </section>
       <section className="mission-banner reveal-section" data-spotlight>
         <div className="mission-orbit" aria-hidden="true">
