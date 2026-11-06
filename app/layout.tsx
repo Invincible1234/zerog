@@ -5,9 +5,14 @@ import { ThemeToggle } from "@/components/theme-toggle";
 import { Navigation } from "@/components/navigation";
 import { CommandMenu } from "@/components/command-menu";
 import { Experience } from "@/components/experience";
+import {
+  CinematicBackdrop,
+  EffectsToggle,
+} from "@/components/cinematic-backdrop";
 import { catalog } from "@/lib/data";
 import "./globals.css";
 import "./experience.css";
+import "./cinematic.css";
 export const metadata: Metadata = {
   title: { default: "Zex / ZEROg — Evidence in orbit", template: "%s · ZEROg" },
   icons: { icon: "/icon.svg" },
@@ -28,6 +33,7 @@ export default function RootLayout({
       <body>
         <ThemeFrame>
           <Experience />
+          <CinematicBackdrop />
           <div className="ambient-light" aria-hidden="true" />
           <a className="skip-link" href="#main">
             Skip to content
@@ -46,6 +52,7 @@ export default function RootLayout({
                   tissue: s.material,
                 }))}
               />
+              <EffectsToggle />
               <ThemeToggle />
             </div>
           </header>

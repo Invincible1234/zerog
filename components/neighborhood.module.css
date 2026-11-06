@@ -167,3 +167,33 @@
   background: var(--surface);
   text-overflow: ellipsis;
 }
+.neighborhood.neighborhood {
+  background:
+    radial-gradient(
+      ellipse at 20% 10%,
+      color-mix(in srgb, var(--electric, #6dcaff) 7%, transparent),
+      transparent 65%
+    ),
+    var(--surface);
+  border-color: color-mix(in srgb, var(--electric, #6dcaff) 20%, var(--line));
+  box-shadow: inset 0 1px 0 #ffffff06;
+}
+.neighborhood .map {
+  background: radial-gradient(
+    ellipse at center,
+    color-mix(in srgb, var(--spectral, #ad91ff) 5%, transparent),
+    transparent 65%
+  );
+}
+.node[aria-pressed="true"] > circle:first-child {
+  filter: drop-shadow(
+    0 0 7px color-mix(in srgb, var(--electric, #6dcaff) 40%, transparent)
+  );
+}
+.neighborhood .inspector {
+  background: linear-gradient(
+    140deg,
+    color-mix(in srgb, var(--electric, #6dcaff) 4%, var(--surface)),
+    var(--surface)
+  );
+}

@@ -1,6 +1,8 @@
 # Zex / ZEROg
 
-A Next.js 16, TypeScript and Tailwind CSS 4 demo that **plays a saved Helix critic run** over public NASA OSDR differential-expression tables. Visual direction follows gravityzero.space: dark lab-notebook surfaces, ruled evidence panels and restrained teal. A light paper theme persists under `zerog-theme`.
+A Next.js 16, TypeScript and Tailwind CSS 4 demo that **plays a saved Helix critic run** over public NASA OSDR differential-expression tables. Its cinematic visual design combines a geographic point-cloud globe, blue/violet auroras, spectral lighting, glass panels and responsive star-field parallax. A light paper theme persists under `zerog-theme`.
+
+Use the header **FX** control to pause or resume decorative motion; the preference persists under `zerog-effects`. System reduced-motion preferences are respected. The background stops animating while the tab is hidden, and the research controls remain available with effects paused. All graphics are illustrations rather than mission telemetry.
 
 **No model calls, API keys, authentication, database or Python server.** Playback reveals saved records; Loop compares saved evaluations and cannot train or promote rules.
 

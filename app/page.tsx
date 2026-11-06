@@ -8,6 +8,7 @@ import {
   Play,
   Fingerprint,
   Orbit as OrbitIcon,
+  Sparkles,
 } from "lucide-react";
 import { Counters } from "@/components/counters";
 import { Orbit } from "@/components/orbit";
@@ -18,16 +19,19 @@ export default function Home() {
   return (
     <>
       <section className="hero">
+        <div className="hero-horizon" aria-hidden="true" />
         <div className="hero-copy">
           <p className="eyebrow">
             <span className="hero-pill">
-              <span className="status-dot" /> PUBLIC SCIENCE, NEW PERSPECTIVES
+              <Sparkles size={12} /> PUBLIC SCIENCE, NEW PERSPECTIVES
             </span>
           </p>
           <h1>
-            Space biology.
+            <span className="hero-first-line">Space biology.</span>
             <br />
-            <em>In a new light.</em>
+            <em>
+              In a <span className="luminous-word">new light.</span>
+            </em>
           </h1>
           <p className="hero-description">
             Follow a research lead all the way back to the evidence. Explore
@@ -46,7 +50,12 @@ export default function Home() {
             <span>Real tables. Saved judgments. Every source attached.</span>
           </div>
         </div>
-        <Orbit />
+        <div className="hero-observatory">
+          <span className="observatory-label" aria-hidden="true">
+            EXPLORE / QUESTION / DISCOVER
+          </span>
+          <Orbit />
+        </div>
         <div className="hero-coordinate" aria-hidden="true">
           <span>EXPLORATION BEGINS WITH A QUESTION</span>
           <span>SCROLL TO DISCOVER ↓</span>
@@ -84,7 +93,7 @@ export default function Home() {
               href: "/loop",
               label: "Open the loop",
             },
-          ].map((f) => (
+          ].map((f, i) => (
             <Link
               className="feature-card"
               key={f.title}
@@ -93,7 +102,7 @@ export default function Home() {
             >
               <div className="feature-symbol">
                 <f.icon size={23} />
-                <ArrowUpRight size={18} />
+                <span className="feature-index">0{i + 1}</span>
               </div>
               <h2>{f.title}</h2>
               <p>{f.text}</p>

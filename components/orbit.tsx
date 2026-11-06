@@ -113,6 +113,20 @@ export function Orbit() {
     const render = () => {
       ctx.clearRect(0, 0, width, width);
       const scale = width / 520;
+      const atmosphere = ctx.createRadialGradient(
+        cx,
+        cy,
+        radius * 0.95,
+        cx,
+        cy,
+        radius * 1.27,
+      );
+      atmosphere.addColorStop(0, "#62deff00");
+      atmosphere.addColorStop(0.2, palette.light ? "#3d83d511" : "#58cbff28");
+      atmosphere.addColorStop(0.55, palette.light ? "#794de909" : "#725bff10");
+      atmosphere.addColorStop(1, "#725bff00");
+      ctx.fillStyle = atmosphere;
+      ctx.fillRect(0, 0, width, width);
       for (let i = 0; i < 62; i++) {
         const x = (((Math.sin(i * 127.1 + 13) * 43758.5453) % 1) + 1) % 1;
         const y = (((Math.sin(i * 311.7 + 3) * 9643.732) % 1) + 1) % 1;
@@ -158,9 +172,9 @@ export function Orbit() {
         cy,
         radius,
       );
-      surface.addColorStop(0, palette.light ? "#e5ede3" : "#112420");
-      surface.addColorStop(0.6, palette.light ? "#edf0e5" : "#0a1714");
-      surface.addColorStop(1, palette.light ? "#e4e8dd" : "#070e0d");
+      surface.addColorStop(0, palette.light ? "#e5edf4" : "#152c43");
+      surface.addColorStop(0.6, palette.light ? "#edf0f2" : "#0c1a2c");
+      surface.addColorStop(1, palette.light ? "#e4e8ee" : "#080e1d");
       ctx.fillStyle = surface;
       ctx.beginPath();
       ctx.arc(cx, cy, radius, 0, Math.PI * 2);
@@ -185,6 +199,11 @@ export function Orbit() {
       for (const coordinate of land) {
         const p = project(coordinate);
         if (p.z <= 0) continue;
+        ctx.fillStyle = palette.light
+          ? palette.accent
+          : p.x < cx - radius * 0.25
+            ? "#94dfff"
+            : palette.ink;
         ctx.globalAlpha = 0.24 + p.z * 0.72;
         const dot = Math.max(0.55, (0.95 + p.z * 0.5) * scale);
         ctx.beginPath();
@@ -258,7 +277,13 @@ export function Orbit() {
       if (disposed) return;
       const elapsed = previous ? Math.min(time - previous, 40) : 16;
       previous = time;
-      if (visible && !document.hidden && !pointer && motion.current) {
+      if (
+        visible &&
+        !document.hidden &&
+        !pointer &&
+        motion.current &&
+        document.documentElement.dataset.effects !== "off"
+      ) {
         longitude += elapsed * 0.000052;
         orbitAngle += elapsed * 0.00019;
         render();
@@ -371,6 +396,11 @@ export function Orbit() {
   return (
     <div className={styles.instrument} ref={containerRef}>
       <div className={styles.aura} aria-hidden="true" />
+      <div className={styles.spectralHalo} aria-hidden="true" />
+      <div className={styles.opticalRing} aria-hidden="true" />
+      <div className={styles.orbitBadge} aria-hidden="true">
+        <span>⊕</span> A DIFFERENT PERSPECTIVE
+      </div>
       <div className={styles.topline}>
         <span>
           <i /> OPEN SCIENCE, IN ORBIT
