@@ -204,7 +204,11 @@ export function Orbit() {
           : p.x < cx - radius * 0.25
             ? "#94dfff"
             : palette.ink;
-        ctx.globalAlpha = 0.24 + p.z * 0.72;
+        const sunlight = Math.max(
+          0.24,
+          Math.min(1, 0.78 - ((p.x - cx) / radius) * 0.5),
+        );
+        ctx.globalAlpha = (0.24 + p.z * 0.72) * (palette.light ? 1 : sunlight);
         const dot = Math.max(0.55, (0.95 + p.z * 0.5) * scale);
         ctx.beginPath();
         ctx.arc(p.x, p.y, dot, 0, Math.PI * 2);

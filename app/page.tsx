@@ -14,12 +14,14 @@ import { Counters } from "@/components/counters";
 import { Orbit } from "@/components/orbit";
 import { product, replication, totals } from "@/lib/data";
 import { EvidenceConsole } from "@/components/evidence-console";
+import { FeatureArt } from "@/components/feature-art";
 export default function Home() {
   const run = product();
   const preview = [...run.survivors.slice(0, 2), ...run.killed.slice(0, 1)];
   return (
     <>
       <section className="hero">
+        <div className="hero-light-beam" aria-hidden="true" />
         <div className="hero-horizon" aria-hidden="true" />
         <div className="hero-copy">
           <p className="eyebrow">
@@ -130,11 +132,13 @@ export default function Home() {
               key={f.title}
               href={f.href}
               data-spotlight
+              data-depth
             >
               <div className="feature-symbol">
                 <f.icon size={23} />
                 <span className="feature-index">0{i + 1}</span>
               </div>
+              <FeatureArt kind={i} />
               <h2>{f.title}</h2>
               <p>{f.text}</p>
               <span>
@@ -146,8 +150,14 @@ export default function Home() {
         </div>
       </section>
       <section className="mission-banner reveal-section" data-spotlight>
-        <div className="mission-orbit" aria-hidden="true">
-          <OrbitIcon size={96} strokeWidth={0.7} />
+        <div className="mission-art" aria-hidden="true">
+          <div className="mission-track mission-track-one" />
+          <div className="mission-track mission-track-two" />
+          <div className="mission-track mission-track-three" />
+          <div className="mission-core">
+            <OrbitIcon size={62} strokeWidth={0.8} />
+          </div>
+          <span className="mission-spark" />
         </div>
         <div>
           <p className="eyebrow">HUMAN SPACEFLIGHT / THE NEXT ADAPTER</p>
@@ -161,6 +171,9 @@ export default function Home() {
             demo; human-data access and assay mapping need review before
             analysis.
           </p>
+          <span className="mission-availability">
+            <i /> STUDY DIRECTORY / METADATA ONLY
+          </span>
         </div>
         <Link className="button" href="/corpus#inspiration4">
           View mission directory ↗

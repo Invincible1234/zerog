@@ -33,7 +33,7 @@ export function EvidenceConsole({
   if (!lead) return null;
   const rep = replications.find((item) => item.id === lead.id);
   return (
-    <div className="evidence-console">
+    <div className="evidence-console" data-spotlight>
       <aside className="desk-leads" aria-label="Featured saved leads">
         <div className="desk-heading">
           <ScanLine size={14} />
@@ -99,64 +99,66 @@ export function EvidenceConsole({
           id="desk-layer-content"
           aria-live="polite"
         >
-          {layer === "table" && (
-            <>
-              <p className="desk-layer-label">CODE-ATTACHED STATISTICS</p>
-              <Facts facts={lead.table_facts} />
-              <p className="desk-fineprint">
-                Saved values, displayed with rounding. Inspect the original CSV
-                for full precision. Carriers are the source payload’s count
-                definition.
-              </p>
-            </>
-          )}
-          {layer === "critic" && (
-            <>
-              <p className="desk-layer-label">SAVED CRITIC JUDGMENT</p>
-              <Badge tone={lead.label === "ok" ? "good" : "warn"}>
-                {lead.label}
-              </Badge>
-              <p>{lead.reason}</p>
-              <div className="desk-next">
-                <span>PROPOSED NEXT STEP</span>
-                <p>{lead.next_step}</p>
-              </div>
-            </>
-          )}
-          {layer === "replication" && (
-            <>
-              <p className="desk-layer-label">SEPARATE CROSS-STUDY CHECK</p>
-              {rep ? (
-                <>
-                  <p>
-                    Upstream saved verdict: <strong>{rep.verdict}</strong>
-                  </p>
-                  <div className="desk-replications">
-                    {rep.numeric.map((entry) => (
-                      <details key={entry.osd_id}>
-                        <summary>
-                          <span>
-                            {entry.osd_id} / {entry.material}
-                          </span>
-                          <Badge>{entry.verdict}</Badge>
-                        </summary>
-                        <Facts facts={entry.facts} />
-                      </details>
-                    ))}
-                  </div>
-                </>
-              ) : (
-                <p>
-                  No replication record is attached. An absent check is not a
-                  failed replication.
+          <div className="desk-content-arrive" key={`${lead.id}-${layer}`}>
+            {layer === "table" && (
+              <>
+                <p className="desk-layer-label">CODE-ATTACHED STATISTICS</p>
+                <Facts facts={lead.table_facts} />
+                <p className="desk-fineprint">
+                  Saved values, displayed with rounding. Inspect the original
+                  CSV for full precision. Carriers are the source payload’s
+                  count definition.
                 </p>
-              )}
-              <p className="desk-fineprint">
-                Saved cross-study concordance is not experimental validation and
-                does not change the critic label.
-              </p>
-            </>
-          )}
+              </>
+            )}
+            {layer === "critic" && (
+              <>
+                <p className="desk-layer-label">SAVED CRITIC JUDGMENT</p>
+                <Badge tone={lead.label === "ok" ? "good" : "warn"}>
+                  {lead.label}
+                </Badge>
+                <p>{lead.reason}</p>
+                <div className="desk-next">
+                  <span>PROPOSED NEXT STEP</span>
+                  <p>{lead.next_step}</p>
+                </div>
+              </>
+            )}
+            {layer === "replication" && (
+              <>
+                <p className="desk-layer-label">SEPARATE CROSS-STUDY CHECK</p>
+                {rep ? (
+                  <>
+                    <p>
+                      Upstream saved verdict: <strong>{rep.verdict}</strong>
+                    </p>
+                    <div className="desk-replications">
+                      {rep.numeric.map((entry) => (
+                        <details key={entry.osd_id}>
+                          <summary>
+                            <span>
+                              {entry.osd_id} / {entry.material}
+                            </span>
+                            <Badge>{entry.verdict}</Badge>
+                          </summary>
+                          <Facts facts={entry.facts} />
+                        </details>
+                      ))}
+                    </div>
+                  </>
+                ) : (
+                  <p>
+                    No replication record is attached. An absent check is not a
+                    failed replication.
+                  </p>
+                )}
+                <p className="desk-fineprint">
+                  Saved cross-study concordance is not experimental validation
+                  and does not change the critic label.
+                </p>
+              </>
+            )}
+          </div>
         </div>
         <div className="desk-bottom">
           <span>A lead stays a lead.</span>

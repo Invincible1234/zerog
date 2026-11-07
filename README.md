@@ -6,6 +6,8 @@ The observatory homepage includes a Discovery Desk with selectable saved OSD-421
 
 Use the header **FX** control to pause or resume decorative motion; the preference persists under `zerog-effects`. System reduced-motion preferences are respected. The background stops animating while the tab is hidden, and the research controls remain available with effects paused. All graphics are illustrations rather than mission telemetry.
 
+The visual presentation pairs editorial serif accents with satin surfaces, subtle pointer-responsive card depth, short evidence transitions and locally rendered SVG process illustrations. Those diagrams are conceptual decorations, not plots of scientific results. The development status indicator is hidden for clean local demos; compile and runtime errors still appear normally.
+
 **No model calls, API keys, authentication, database or Python server.** Playback reveals saved records; Loop compares saved evaluations and cannot train or promote rules.
 
 ## Run

@@ -81,6 +81,13 @@ export default function RootLayout({
               </span>
               <Link href="/method">Methods & sources ↗</Link>
             </div>
+            <div className="footer-signature" aria-hidden="true">
+              <span>
+                ZERO<span>g</span>
+                <i>↗</i>
+              </span>
+              <span>IN PURSUIT OF BETTER QUESTIONS.</span>
+            </div>
           </footer>
         </ThemeFrame>
       </body>
